@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link"
 import { Player } from "@remotion/player";
 import type { NextPage } from "next";
 import React, { useMemo, useState } from "react";
@@ -16,6 +17,8 @@ import { z } from "zod";
 import { RenderControls } from "../components/RenderControls";
 import { Tips } from "../components/Tips/Tips";
 import { Spacing } from "../components/Spacing";
+import { saveAs } from "file-saver"
+
 
 const container: React.CSSProperties = {
   maxWidth: 768,
@@ -43,6 +46,10 @@ const Home: NextPage = () => {
       title: text,
     };
   }, [text]);
+
+  function download() {
+
+  }
 
   return (
     <div>
@@ -72,6 +79,17 @@ const Home: NextPage = () => {
         <Spacing></Spacing>
         <Tips></Tips>
       </div>
+      <button onClick={()=>{
+        saveAs("../public/MyComp.mp4", "download.mp4")
+      }}>다운로드</button>
+      <a
+        href="../public/MyComp.mp4"
+        download="download.mp4"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <button>Download .mp4 file</button>
+      </a>
     </div>
   );
 };
